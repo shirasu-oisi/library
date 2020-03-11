@@ -8,7 +8,7 @@ class SegTree:
         n = len(A)
         c = [e] * (2*n)
 
-        for i in range(N):
+        for i in range(n):
             c[i+n] = A[i] # 葉をA[i]の値にする
         
         for i in range(n-1, 0, -1):
