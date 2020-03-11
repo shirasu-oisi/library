@@ -1,11 +1,11 @@
 class SegTree:
-    def __init__(self, N, A, f, e):
+    def __init__(self, A, f, e):
         """
-        N: A の要素数
         A: セグ木に乗せたい配列
         f: 二項演算 (モノイドじゃなきゃだめ)
         e: f の単位元
         """
+        N = len(A)
         n = 2**(N-1).bit_length() # セグ木の葉の数（N 以上の最小の2べき）
         c = [e] * (2*n)
 
@@ -34,14 +34,19 @@ class SegTree:
         l += self.n; r += self.n # 対応する葉に移動
 
         while l < r: # 範囲がかぶらない間
-            if l & 1: # 左端が右側にいるなら
+            if l & 1: # 左端が右の子なら
                 res = self.f(res, self.c[l]) # その値と res の積をとって
                 l += 1 # 右に 1 動く
 
-            if r & 1: # 右端が左側にいるなら
-                r -= 1 # 左に 1 動いて (右端は閉なので)
+            if r & 1: # 右端が右の子なら
+                r -= 1 # 左に 1 動いて
                 res = self.f(res, self.c[r]) # その値と res の積をとる
 
             l >>= 1; r >>= 1 # 親に移動
         
         return res
+
+A = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000]
+st = SegTree(A, lambda x, y: x+y, 0)
+
+st.query(1, 7)
