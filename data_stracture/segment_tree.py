@@ -5,8 +5,7 @@ class SegTree:
         f: 二項演算 (モノイドじゃなきゃだめ)
         e: f の単位元
         """
-        N = len(A)
-        n = 2**(N-1).bit_length() # セグ木の葉の数（N 以上の最小の2べき）
+        n = len(A)
         c = [e] * (2*n)
 
         for i in range(N):
@@ -15,7 +14,7 @@ class SegTree:
         for i in range(n-1, 0, -1):
             c[i] = f(c[i<<1|0], c[i<<1|1]) # 子を使ってボトムアップに値を更新していく
         
-        self.n = n # セグ木の葉の数（N 以上の最小の2べき）
+        self.n = n # セグ木の葉の数
         self.c = c # セグ木の配列
         self.e = e
         self.f = f
@@ -29,7 +28,7 @@ class SegTree:
             k >>= 1
             self.c[k] = self.f(self.c[k<<1|0], self.c[k<<1|1])
 
-    def query(self, l, r): # [l, r)
+    def query(self, l, r):
         res = self.e
         l += self.n; r += self.n # 対応する葉に移動
 
