@@ -45,8 +45,3 @@ class SegTree:
             l >>= 1; r >>= 1 # 親に移動
         
         return res
-
-A = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000]
-st = SegTree(A, lambda x, y: x+y, 0)
-
-st.query(1, 7)
