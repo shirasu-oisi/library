@@ -1,2 +1,1 @@
-# library
- 
+# Python Library for Competitive Programming
