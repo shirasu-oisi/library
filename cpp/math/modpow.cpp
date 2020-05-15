@@ -1,7 +1,11 @@
-// a^b % mod 
-int modpow(int a, int b, int mod = 1000000007) { int res{1};
-  while (b){
-    if (b & 1) res = res * a % mod;
+// a^b % mod
+int modpow(int a, int b, int mod = 1000000007)
+{
+  int res{1};
+  while (b)
+  {
+    if (b & 1)
+      res = res * a % mod;
     a = a * a % mod;
     b >>= 1;
   }
